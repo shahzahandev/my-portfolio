@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle.jsx";
 
 const navItems = [
+  { label: "Work", href: "#projects" },
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" }
 ];
 
-const Navbar = ({ theme, setTheme }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -34,13 +33,17 @@ const Navbar = ({ theme, setTheme }) => {
       }`}
     >
       <nav className="container-shell flex h-[var(--nav-height)] items-center justify-between">
-        <a
-          href="#home"
-          onClick={(event) => handleNavClick(event, "#home")}
-          className="focus-ring rounded-lg font-display text-lg font-bold tracking-normal text-zinc-950 dark:text-white"
-        >
-          Shahzahan<span className="text-emerald-600 dark:text-emerald-400">.</span>
-        </a>
+        <div className="navbar-identity">
+          <a
+            href="#home"
+            onClick={(event) => handleNavClick(event, "#home")}
+            className="navbar-mark focus-ring"
+            aria-label="Shahzahan Siraj home"
+          >
+            SS
+          </a>
+          <p className="navbar-location"><span>Based in</span>Dhaka, Bangladesh</p>
+        </div>
 
         <div className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
@@ -56,7 +59,6 @@ const Navbar = ({ theme, setTheme }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle theme={theme} setTheme={setTheme} />
           <button
             type="button"
             aria-label="Toggle mobile menu"

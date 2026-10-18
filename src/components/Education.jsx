@@ -35,14 +35,14 @@ const Education = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding">
+    <section ref={sectionRef} className="section-padding education-section">
       <div className="container-shell">
         <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <span className="eyebrow">Education</span>
-            <h2 className="section-title mt-5">Academic background.</h2>
+            <h2 className="section-title mt-5">Building Knowledge. Growing Every Day.</h2>
             <p className="section-copy">
-              A concise education timeline with a clean professional layout.
+              My academic journey in Bangla Literature has helped me develop communication, analytical thinking, and problem-solving skills. Alongside my academic background, I continue to strengthen my technical expertise in MERN stack development and build practical web applications.
             </p>
           </div>
 
@@ -54,7 +54,7 @@ const Education = () => {
                 className="education-card relative rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.055]"
               >
                 <div className="flex flex-col gap-5 sm:flex-row">
-                  <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white">
+                  <div className="education-icon relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border bg-emerald-600 text-white">
                     <GraduationCap size={24} />
                   </div>
                   <div>
@@ -62,7 +62,7 @@ const Education = () => {
                       <h3 className="font-display text-2xl font-bold text-zinc-950 dark:text-white">
                         {item.degree}
                       </h3>
-                      <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-bold text-emerald-700 dark:text-emerald-300">
+                      <span className="education-year-badge rounded-full border px-3 py-1 text-sm font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
                         {item.year}
                       </span>
                     </div>

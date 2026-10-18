@@ -27,7 +27,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-padding bg-white dark:bg-zinc-900/50">
+    <section id="about" ref={sectionRef} className="section-padding about-section bg-white dark:bg-zinc-900/50">
       <div className="container-shell">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div className="about-reveal">
@@ -51,7 +51,7 @@ const About = () => {
               {stats.map(({ label, icon: Icon }) => (
                 <div
                   key={label}
-                  className="rounded-2xl border border-zinc-200 bg-stone-50 p-5 transition hover:-translate-y-1 hover:border-emerald-500/50 dark:border-white/10 dark:bg-white/[0.045]"
+                  className="rounded-2xl border border-zinc-200 bg-stone-50 p-5 dark:border-white/10 dark:bg-white/[0.045]"
                 >
                   <Icon className="text-emerald-600 dark:text-emerald-300" size={24} />
                   <p className="mt-4 font-semibold text-zinc-900 dark:text-white">{label}</p>

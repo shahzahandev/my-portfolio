@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Outfit", "Inter", "ui-sans-serif", "system-ui"],
-        display: ["Space Grotesk", "Outfit", "ui-sans-serif", "system-ui"]
+        sans: ["DM Sans", "ui-sans-serif", "system-ui"],
+        display: ["Space Grotesk", "DM Sans", "ui-sans-serif", "system-ui"]
       },
       boxShadow: {
         soft: "0 20px 70px rgba(15, 23, 42, 0.10)",

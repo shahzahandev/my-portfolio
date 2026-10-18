@@ -8,11 +8,13 @@ export const skills = [
       "Tailwind CSS",
       "JavaScript ES6+",
       "React.js",
+      "Next.js",
+      "React Native"
     ]
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express.js", "REST API", "Cloudinary", "Multer", "MongoDB", "MySQL"]
+    items: ["Node.js", "Express.js", "REST API", "Cloudinary", "Multer", "MongoDB", "MySQL", "Python"]
   },
   {
     category: "Tools",

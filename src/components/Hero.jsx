@@ -1,70 +1,81 @@
-import { useRef } from "react";
-import { ArrowRight, Download, Send } from "lucide-react";
-import { useGsap } from "../hooks/useGsap.js";
-import HeroModel from "./HeroModel.jsx";
+import { useRef, useState } from "react";
+import { Linkedin, Github, Facebook, Mail } from "lucide-react";
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shahzahan-siraj-7b5ba7304/", icon: Linkedin },
+  { label: "GitHub", href: "https://github.com/shahzahandev", icon: Github },
+  { label: "Facebook", href: "https://www.facebook.com/share/1KJkqwPErt/", icon: Facebook },
+  { label: "Email", href: "mailto:shahzahansiraj516@gmail.com", icon: Mail }
+];
 
 const Hero = () => {
-  const heroRef = useRef(null);
+  const sceneRef = useRef(null);
+  const grabOriginRef = useRef(null);
+  const [aim, setAim] = useState({ x: 0, y: 0 });
+  const [grabbing, setGrabbing] = useState(false);
 
-  useGsap(heroRef, ({ gsap }) => {
-    gsap
-      .timeline({ defaults: { ease: "power3.out" } })
-      .from(".hero-label", { y: 18, opacity: 0, duration: 0.7 })
-      .from(".hero-title", { y: 28, opacity: 0, duration: 0.85 }, "-=0.45")
-      .from(".hero-copy", { y: 22, opacity: 0, duration: 0.7 }, "-=0.45")
-      .from(".hero-actions a", { y: 20, opacity: 0, duration: 0.55, stagger: 0.12 }, "-=0.35")
-      .from(".hero-model", { x: 34, opacity: 0, duration: 0.9 }, "-=0.65");
-  }, []);
+  const moveLamp = (event) => {
+    if (!sceneRef.current) return;
+    if (!grabbing || !grabOriginRef.current) return;
+    const origin = grabOriginRef.current;
+    const x = origin.aim.x + (event.clientX - origin.x) / 90;
+    const y = origin.aim.y + (event.clientY - origin.y) / 100;
+    setAim({ x: Math.max(-1.35, Math.min(1.35, x)), y: Math.max(-1, Math.min(1.3, y)) });
+  };
+
+  const toggleGrab = (event) => {
+    event.preventDefault();
+    if (grabbing) {
+      setGrabbing(false);
+      grabOriginRef.current = null;
+      return;
+    }
+    grabOriginRef.current = { x: event.clientX, y: event.clientY, aim: { ...aim } };
+    setGrabbing(true);
+  };
 
   return (
     <section
       id="home"
-      ref={heroRef}
-      className="relative overflow-hidden pt-[calc(var(--nav-height)+58px)] md:pt-[calc(var(--nav-height)+76px)]"
+      ref={sceneRef}
+      onPointerMove={moveLamp}
+      className={`lamp-scene relative isolate\
+         overflow-hidden ${grabbing ? "lamp-scene--grabbing" : ""}`}
     >
-      <div className="pointer-events-none absolute inset-0 hero-grid opacity-60" aria-hidden="true" />
-      <div className="container-shell relative grid min-h-[calc(100vh-76px)] items-center gap-14 pb-24 lg:grid-cols-[1.02fr_0.98fr]">
-        <div className="max-w-3xl">
-          <span className="hero-label eyebrow">MERN Stack Developer</span>
-          <h1 className="hero-title mt-6 font-display text-5xl font-bold tracking-normal text-zinc-950 dark:text-white sm:text-6xl lg:text-7xl">
-            Hi, I'm Md. Shahzahan Siraj
-          </h1>
-          <p className="hero-copy mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300 md:text-xl">
-            I build modern, responsive and scalable web applications using React, Node.js,
-            Express.js and MongoDB.
-          </p>
+      <div
+        className="hanging-lamp hanging-lamp--on"
+        style={{ "--lamp-x": `${aim.x * 90}px`, "--lamp-tilt": `${aim.x * 8}deg`, "--lamp-drop": `${aim.y * 100}px` }}
+        onDoubleClick={toggleGrab}
+      >
+        <span className="lamp-cord" />
+        <span className="lamp-cap" />
+        <span className="lamp-shade"><i /></span>
+        <span className="lamp-bulb" />
+      </div>
 
-          <div className="hero-actions mt-9 flex flex-col gap-4 sm:flex-row">
+      <div className="lamp-scene__content container-shell relative z-10 flex min-h-[760px] flex-col items-center justify-center px-5 pb-0 pt-10 text-center">
+        <h1 className="lamp-title mt-15 font-display font-bold tracking-tight">
+          <span className="lamp-title__name"><span>SHAHZAHAN</span><i aria-hidden="true">✳</i><span>SIRAJ</span></span>
+          <span className="lamp-title__role">MERN DEVELOPER<i aria-hidden="true">✳</i></span>
+        </h1>
+        <nav className="hero-social-bar" aria-label="Social links">
+          {socialLinks.map(({ label, href, icon: Icon }) => (
             <a
-              href="#projects"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 transition hover:-translate-y-1 hover:bg-emerald-700"
+              key={label}
+              href={href}
+              aria-label={label}
+              title={label}
+              className="hero-social-link"
+              target={label === "Email" ? undefined : "_blank"}
+              rel={label === "Email" ? undefined : "noreferrer"}
             >
-              View Projects <ArrowRight size={18} />
+              <Icon size={19} strokeWidth={1.8} />
             </a>
-            <a
-              href="#contact"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-zinc-300 bg-white px-6 py-3.5 text-sm font-bold text-zinc-800 transition hover:-translate-y-1 hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-emerald-300"
-            >
-              Contact Me <Send size={18} />
-            </a>
-          </div>
-
-          <div className="mt-10 grid max-w-xl grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-            {["React", "Node.js", "MongoDB"].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-zinc-200 bg-white/70 px-4 py-3 font-semibold text-zinc-700 shadow-sm dark:border-white/10 dark:bg-white/[0.06] dark:text-zinc-200"
-              >
-                <Download className="mb-2 text-emerald-600 dark:text-emerald-300" size={17} />
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-model pb-12 lg:pb-0">
-          <HeroModel />
-        </div>
+          ))}
+        </nav>
+        <p className="lamp-copy mt-6 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8">
+          I build modern, responsive and scalable web applications using React, Node.js, Express.js and MongoDB.
+        </p>
       </div>
     </section>
   );
