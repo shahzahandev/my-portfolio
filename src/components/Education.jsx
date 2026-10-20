@@ -3,17 +3,23 @@ import { GraduationCap } from "lucide-react";
 import { useGsap } from "../hooks/useGsap.js";
 
 const education = [
+    {
+    degree: "MERN Stack Development",
+    subject: "React.js | Node.js | Express.js | MongoDB",
+    year: "2026",
+    institution: "Creative It Institute, Dhanmondi, Dhaka"
+  },
   {
     degree: "Master's of Arts (M.A.)",
     subject: "Bangla Literature",
     year: "2025",
-    institution: "Government Titumir College"
+    institution: "Government Titumir College, Mohakhali, Dhaka"
   },
   {
     degree: "Bachelor of Arts (B.A.)",
     subject: "Bangla Literature",
     year: "2024",
-    institution: "Government Titumir College"
+    institution: "Government Titumir College, Mohakhali, Dhaka"
   }
 ];
 

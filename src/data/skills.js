@@ -2,11 +2,10 @@ export const skills = [
   {
     category: "Frontend",
     items: [
-      "HTML",
-      "CSS",
       "Bootstrap",
       "Tailwind CSS",
       "JavaScript ES6+",
+      "TypeScript",
       "React.js",
       "Next.js",
       "React Native"
@@ -14,11 +13,11 @@ export const skills = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express.js", "REST API", "Cloudinary", "Multer", "MongoDB", "MySQL", "Python"]
+    items: ["Node.js", "Express.js", "Nest.js", "REST API", "Multer", "MongoDB", "MySQL", "Python"]
   },
   {
     category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Figma", "Postman"]
+    items: ["Git", "GitHub", "VS Code", "Figma", "Postman",  "Cloudinary", "Vercel", "Render", "Railway"]
   },
 
 ];

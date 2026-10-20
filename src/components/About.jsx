@@ -4,9 +4,9 @@ import { useGsap } from "../hooks/useGsap.js";
 
 const stats = [
   { label: "MERN Stack Developer", icon: Code2 },
-  { label: "Full Stack Projects", icon: LayoutDashboard },
+  { label: "Full Stack Development", icon: LayoutDashboard },
   { label: "REST API Development", icon: Server },
-  { label: "Responsive Web Development", icon: Smartphone }
+  { label: "Responsive Web Design", icon: Smartphone }
 ];
 
 const About = () => {

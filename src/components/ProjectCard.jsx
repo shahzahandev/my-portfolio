@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Info } from "lucide-react";
 
 export const ProjectImagePlaceholder = () => (
   <div
@@ -9,22 +9,9 @@ export const ProjectImagePlaceholder = () => (
   </div>
 );
 
-const ProjectCard = ({ project }) => (
+const ProjectCard = ({ project, onAboutProject, isSelected }) => (
   <article className="project-card flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.055]">
-    <div
-      className="project-preview relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-200 bg-stone-50"
-      onPointerMove={(event) => {
-        const bounds = event.currentTarget.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-        const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-        event.currentTarget.style.setProperty("--zoom-x", `${x}%`);
-        event.currentTarget.style.setProperty("--zoom-y", `${y}%`);
-      }}
-      onPointerLeave={(event) => {
-        event.currentTarget.style.setProperty("--zoom-x", "50%");
-        event.currentTarget.style.setProperty("--zoom-y", "50%");
-      }}
-    >
+    <div className="project-preview relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-200 bg-stone-50">
       {project.image ? (
         <img
           src={project.image}
@@ -60,26 +47,28 @@ const ProjectCard = ({ project }) => (
           </span>
         ))}
       </div>
-
-      <ul className="mt-5 grid grid-cols-4 gap-2 text-sm text-zinc-600 dark:text-zinc-300">
-        {project.features.map((feature) => (
-          <li key={feature} className="flex gap-2">
-            <span className="project-feature-marker mt-2 h-1.5 w-1.5 shrink-0 rounded-sm" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      {project.live && (
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noreferrer"
-          className="focus-ring mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-zinc-300 px-5 py-3 text-sm font-bold text-zinc-800 dark:border-white/10 dark:text-white"
+      <div className="mt-auto flex w-full flex-wrap items-center justify-between gap-3 pt-7">
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="focus-ring inline-flex w-fit items-center gap-2 rounded-full border border-zinc-300 px-5 py-3 text-sm font-bold text-zinc-800 dark:border-white/10 dark:text-white"
+          >
+            Live <ExternalLink size={17} />
+          </a>
+        )}
+        <button
+          type="button"
+          onClick={() => onAboutProject(project)}
+          aria-haspopup="dialog"
+          aria-expanded={isSelected}
+          aria-controls="project-details"
+          className="focus-ring inline-flex w-fit items-center gap-2 rounded-full border border-zinc-300 px-5 py-3 text-sm font-bold text-zinc-800 dark:border-white/10 dark:text-white"
         >
-          Live Demo <ExternalLink size={17} />
-        </a>
-      )}
+          About project <Info size={16} />
+        </button>
+      </div>
     </div>
   </article>
 );

@@ -53,8 +53,8 @@ const Hero = () => {
         <span className="lamp-bulb" />
       </div>
 
-      <div className="lamp-scene__content container-shell relative z-10 flex min-h-[760px] flex-col items-center justify-center px-5 pb-0 pt-10 text-center">
-        <h1 className="lamp-title mt-15 font-display font-bold tracking-tight">
+      <div className="lamp-scene__content container-shell relative z-10 flex flex-col items-center justify-center px-5 text-center">
+        <h1 className="lamp-title mt-5 font-display font-bold tracking-tight">
           <span className="lamp-title__name">
             <span className="lamp-title__lead"><span>SHAHZAHAN</span><i aria-hidden="true">✳</i></span>
             <span className="lamp-title__surname">SIRAJ</span>

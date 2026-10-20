@@ -15,14 +15,21 @@ export const getProjects = async ({ signal } = {}) => {
     if (!Array.isArray(records)) throw new Error("Projects API returned an invalid response");
 
     return records.map((project) => {
+      const id = project.id ?? project._id ?? project.slug ?? project.name;
+      const localProject = localProjects.find((item) => item.id === id || item.name === project.name);
       const image = project.image ?? project.imageUrl ?? "";
       return {
         ...project,
-        id: project.id ?? project._id ?? project.slug ?? project.name,
+        id,
         image: typeof image === "string" ? image : image.url ?? image.secure_url ?? "",
         imageAlt: project.imageAlt ?? `${project.name} project preview`,
         stack: Array.isArray(project.stack) ? project.stack : [],
-        features: Array.isArray(project.features) ? project.features : []
+        features: Array.isArray(project.features) && project.features.length
+          ? project.features
+          : localProject?.features ?? [],
+        challenges: Array.isArray(project.challenges) && project.challenges.length
+          ? project.challenges
+          : localProject?.challenges ?? []
       };
     });
   } catch (error) {

@@ -12,7 +12,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-stone-50 py-10 dark:border-white/10 dark:bg-zinc-950">
+    <footer className="bg-stone-50 py-[60px] dark:border-white/10 dark:bg-zinc-950">
       <div className="container-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="font-display text-xl font-bold text-zinc-950 dark:text-white">

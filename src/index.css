@@ -44,7 +44,7 @@ section {
 }
 
 .section-padding {
-  padding-block: clamp(72px, 9vw, 118px);
+  padding-block: 60px;
 }
 
 .eyebrow {
@@ -82,7 +82,6 @@ section {
 }
 
 .lamp-scene {
-  min-height: max(760px, 100svh);
   isolation: isolate;
   background:
     radial-gradient(ellipse at 9% -8%, rgba(184, 243, 74, 0.72), transparent 31%),
@@ -152,18 +151,19 @@ section {
 .lamp-title__role { display: inline-flex; align-items: center; gap: .24em; margin-top: .16em; color: #171717; font-family: "DM Sans", sans-serif; font-size: clamp(2rem, 5vw, 5.2rem); font-weight: 500; letter-spacing: .09em; }
 .lamp-title__role-word { white-space: nowrap; }
 .lamp-title__role i { display: inline-block; margin-left: 0; color: #B8F34A; font-size: .9em; font-style: normal; line-height: 1; animation: hero-sparkle-left 10s linear infinite; }
-.lamp-copy { position: absolute; top: 20%; left: clamp(22px, 8vw, 118px); width: min(270px, 27vw); margin: clamp(28px, 4vh, 52px) 0 0 !important; color: #50534a; font-size: 13px !important; line-height: 1.65 !important; text-align: left; text-shadow: none; }
+.lamp-copy { position: absolute; top: 24%; left: clamp(22px, 8vw, 118px); width: min(270px, 27vw); margin: 0 !important; color: #50534a; font-size: 13px !important; line-height: 1.65 !important; text-align: left; text-shadow: none; }
 @keyframes hero-sparkle { to { transform: rotate(360deg); } }
 @keyframes hero-sparkle-left { to { transform: rotate(-360deg); } }
 .hero-social-bar { position: relative; z-index: 12; display: flex; flex: 0 0 auto; align-items: center; gap: 12px; margin-top: clamp(18px, 3vh, 30px); padding: 7px 16px; border: 1px solid #17171716; border-radius: 10px; background: rgba(23, 23, 23, .82); box-shadow: 0 10px 30px #1717172b; }
 .hero-social-link { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; padding: 12px; border: 1px solid transparent; border-radius: 10px; color: #F8FAF5 !important; transition: color .2s ease, background .2s ease; }
 .hero-social-link:hover { transform: none; background: #E5E7EB; color: #171717 !important; }
 .hero-social-link:focus-visible { outline: 2px solid #B8F34A; outline-offset: 3px; }
+.lamp-scene__content { padding: 220px 20px 40px; }
 
 @media (max-width: 640px) {
-  .lamp-scene, .lamp-scene__content { min-height: 680px; }
+  .lamp-scene__content { padding: 220px 20px 24px; }
   .lamp-beam { top: 184px; width: 145vw; height: 540px; }
-  .lamp-copy { max-width: min(90vw, 34rem); }
+  .lamp-copy { top: 190px; left: 20px; width: min(230px, 65vw); max-width: min(90vw, 34rem); }
   .lamp-title { font-size: clamp(2rem, 8.5vw, 3.35rem); line-height: 1; }
   .lamp-title { margin-top: clamp(6rem, 13vh, 7rem) !important; }
   .lamp-title__intro { margin-bottom: 14px; }
@@ -174,7 +174,7 @@ section {
   .lamp-title__role-word:first-child { align-self: flex-start; }
   .lamp-title__role-tail { align-self: flex-end; }
   .hanging-lamp { top: -10px; }
-  .lamp-copy { top: 24%; left: 20px; width: min(230px, 65vw); margin-top: 12px !important; font-size: 12px !important; }
+  .lamp-copy { font-size: 12px !important; }
   .hero-social-bar { margin-top: 18px; gap: 8px; padding: 5px 12px; }
   .hero-social-link { width: 44px; height: 44px; padding: 11px; }
   .lamp-time { font-size: 8px; letter-spacing: .16em; }
@@ -331,12 +331,21 @@ section {
   color: #171717 !important;
   transition: none !important;
 }
-.portfolio-shell .project-card ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.portfolio-shell .project-preview img {
-  transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
-  transition: transform 550ms cubic-bezier(.2, .75, .2, 1);
+.project-details-scroll {
+  scrollbar-color: rgba(119, 145, 69, .72) transparent;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
 }
-.portfolio-shell .project-preview:hover img { transform: scale(1.45); }
+.project-details-scroll::-webkit-scrollbar { width: 10px; }
+.project-details-scroll::-webkit-scrollbar-track { margin-block: 14px; background: transparent; }
+.project-details-scroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(119, 145, 69, .72);
+  background-clip: padding-box;
+}
+.project-details-scroll::-webkit-scrollbar-thumb:hover { background: #78973e; background-clip: padding-box; }
+.portfolio-shell .project-card ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .portfolio-shell .project-stack-badge,
 .portfolio-shell .project-feature-marker,
 .portfolio-shell .education-icon,
@@ -351,84 +360,9 @@ section {
   background-color: var(--surface-raised) !important;
   color: #171717 !important;
 }
-.portfolio-shell .contact-send-icon {
-  transform: translate(0, 0);
-  transition: transform 220ms ease;
-}
-.portfolio-shell .contact-submit-button:not(:disabled):hover .contact-send-icon {
-  transform: translate(3px, 3px);
-}
-.portfolio-shell .contact-submit-button.is-sending .contact-send-icon {
-  position: relative;
-  z-index: 2;
-  animation: contact-send-to-center 720ms cubic-bezier(.2, .78, .24, 1) forwards;
-}
-.portfolio-shell .contact-submit-button.is-sent .contact-send-icon {
-  opacity: 0;
-  transform: translate(var(--send-dx, 0), var(--send-dy, 0)) scale(.01);
-}
 .portfolio-shell .contact-section > .container-shell {
   position: relative;
   z-index: 2;
-}
-.portfolio-shell .contact-fireworks {
-  position: absolute;
-  z-index: 4;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.portfolio-shell .contact-fireworks--section { display: block; }
-.portfolio-shell .contact-fireworks--form { display: none; }
-.portfolio-shell .contact-firework-burst {
-  position: absolute;
-  top: var(--burst-y);
-  left: var(--burst-x);
-  width: 0;
-  height: 0;
-}
-.portfolio-shell .contact-firework-burst::before {
-  position: absolute;
-  inset: -18px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, .85), rgba(184, 243, 74, .28) 30%, transparent 72%);
-  content: "";
-  opacity: 0;
-  transform: scale(.15);
-}
-.portfolio-shell .contact-firework-burst i {
-  position: absolute;
-  top: -7px;
-  left: -4px;
-  width: var(--particle-size, 8px);
-  height: var(--particle-length, 20px);
-  border-radius: 50%;
-  background: var(--particle-color, #B8F34A);
-  box-shadow: 0 0 16px var(--particle-color, #B8F34A);
-  opacity: 0;
-  transform-origin: 50% 7px;
-}
-.portfolio-shell .contact-fireworks.is-active .contact-firework-burst i {
-  animation: contact-firework-burst var(--burst-duration) cubic-bezier(.12, .72, .28, 1) calc(var(--burst-delay) + var(--particle-delay, 0s)) both;
-}
-.portfolio-shell .contact-fireworks.is-active .contact-firework-burst::before {
-  animation: contact-firework-flash var(--burst-duration) ease-out var(--burst-delay) both;
-}
-@keyframes contact-send-to-center {
-  0% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
-  68% { opacity: 1; transform: translate(calc(var(--send-dx) * .88), calc(var(--send-dy) * .88)) rotate(20deg) scale(.84); }
-  100% { opacity: 0; transform: translate(var(--send-dx), var(--send-dy)) rotate(34deg) scale(.08); }
-}
-@keyframes contact-firework-burst {
-  0% { opacity: 0; transform: rotate(var(--particle-angle)) translateY(0) scale(.35); }
-  12% { opacity: 1; }
-  75% { opacity: 1; }
-  100% { opacity: 0; transform: rotate(var(--particle-angle)) translateY(calc(0px - var(--burst-spread))) scale(.72); }
-}
-@keyframes contact-firework-flash {
-  0% { opacity: 0; transform: scale(.15); }
-  12% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(2.4); }
 }
 .portfolio-shell .focus-ring:focus-visible { outline-color: #171717 !important; }
 .portfolio-shell .lamp-scene .lamp-title__name,
@@ -457,14 +391,6 @@ section {
 
 @media (max-width: 640px) {
   .portfolio-shell .project-card ul { grid-template-columns: 1fr; }
-  .portfolio-shell .contact-fireworks--section { display: none; }
-  .portfolio-shell .contact-fireworks--form { display: block; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-shell .contact-submit-button.is-sending .contact-send-icon,
-  .portfolio-shell .contact-fireworks.is-active .contact-firework-burst i,
-  .portfolio-shell .contact-fireworks.is-active .contact-firework-burst::before { animation-duration: 1ms; animation-delay: 0ms; }
 }
 
 @media (prefers-reduced-motion: reduce) {
