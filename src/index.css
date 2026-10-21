@@ -161,9 +161,9 @@ section {
 .lamp-scene__content { padding: 220px 20px 40px; }
 
 @media (max-width: 640px) {
-  .lamp-scene__content { padding: 220px 20px 24px; }
+  .lamp-scene__content { padding: 220px 20px 40px; }
   .lamp-beam { top: 184px; width: 145vw; height: 540px; }
-  .lamp-copy { top: 190px; left: 20px; width: min(230px, 65vw); max-width: min(90vw, 34rem); }
+  .lamp-copy { top: 202px; left: 20px; width: min(230px, 65vw); max-width: min(90vw, 34rem); }
   .lamp-title { font-size: clamp(2rem, 8.5vw, 3.35rem); line-height: 1; }
   .lamp-title { margin-top: clamp(6rem, 13vh, 7rem) !important; }
   .lamp-title__intro { margin-bottom: 14px; }
@@ -176,7 +176,8 @@ section {
   .hanging-lamp { top: -10px; }
   .lamp-copy { font-size: 12px !important; }
   .hero-social-bar { margin-top: 18px; gap: 8px; padding: 5px 12px; }
-  .hero-social-link { width: 44px; height: 44px; padding: 11px; }
+  .hero-social-link { width: 44px; height: 44px; padding: 11px; box-shadow: 0 3px 8px rgba(23, 23, 23, .14); }
+  .portfolio-shell footer .footer-social-link { box-shadow: 0 3px 8px rgba(23, 23, 23, .12); }
   .lamp-time { font-size: 8px; letter-spacing: .16em; }
 }
 

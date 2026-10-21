@@ -13,11 +13,11 @@ export const skills = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express.js", "Nest.js", "REST API", "Multer", "MongoDB", "MySQL", "Python"]
+    items: ["Node.js", "Express.js", "Nest.js", "REST API",  "MongoDB", "MySQL", "PostgreSQL", "Python"]
   },
   {
     category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Figma", "Postman",  "Cloudinary", "Vercel", "Render", "Railway"]
+    items: ["Git", "GitHub", "VS Code", "Figma", "Postman",  "Cloudinary","Multer", "Vercel", "Render", "Railway", "Nodemailer"]
   },
 
 ];

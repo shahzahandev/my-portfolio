@@ -21,7 +21,7 @@ export const projects = [
       "Amar Payment Gateway Integration",
       "Product Details and Discount Pricing",
       "Configurable Delivery Charges",
-      "- Interactive Wishlist and Product Discovery"
+      "Interactive Wishlist and Product Discovery"
     ],
     challenges: [
       "Maintaining Accurate Cart and Order Totals",
@@ -29,7 +29,7 @@ export const projects = [
       "Synchronizing Frontend State with Backend APIs",
       "Handling Product Availability and Stock Updates",
       "Implementing Flexible Delivery Charge Rules",
-      "- Ensuring Responsive UI Across Devices"
+      "Ensuring Responsive UI Across Devices"
     ]
   },
   {
