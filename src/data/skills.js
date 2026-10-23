@@ -12,12 +12,12 @@ export const skills = [
     ]
   },
   {
-    category: "Backend",
-    items: ["Node.js", "Express.js", "Nest.js", "REST API",  "MongoDB", "MySQL", "PostgreSQL", "Python"]
+    category: "Backend & Utilities",
+    items: ["Node.js", "Express.js", "REST API",  "MongoDB", "Cloudinary", "Multer", "Nodemailer", "JWT", "Bcrypt.js",]
   },
   {
     category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Figma", "Postman",  "Cloudinary","Multer", "Vercel", "Render", "Railway", "Nodemailer"]
+    items: ["Git", "GitHub", "VS Code", "Figma", "Postman",  "Vercel", "Render", "Railway"]
   },
 
 ];

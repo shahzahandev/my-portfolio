@@ -1,12 +1,26 @@
 import { useEffect, useRef } from "react";
-import { Check, ExternalLink, Lightbulb, X } from "lucide-react";
+import { Check, Lightbulb, X } from "lucide-react";
 
-const DetailList = ({ items, icon: Icon }) => (
+const DetailText = ({ item }) => {
+  const topicEnd = item.indexOf(":");
+  if (topicEnd === -1) return item;
+
+  return (
+    <>
+      <strong className="font-bold text-zinc-800">{item.slice(0, topicEnd + 1)}</strong>
+      {item.slice(topicEnd + 1)}
+    </>
+  );
+};
+
+const DetailList = ({ items }) => (
   <ul className="mt-5 space-y-3">
-    {items.map((item) => (
+    {items.map((item, index) => (
       <li key={item} className="flex items-start gap-3 text-sm leading-6 text-zinc-600">
-        <Icon className="mt-1 shrink-0 text-emerald-700" size={16} aria-hidden="true" />
-        <span>{item}</span>
+        <span className="mt-0.5 w-5 shrink-0 font-bold tabular-nums text-emerald-800" aria-hidden="true">
+          {index + 1}.
+        </span>
+        <span><DetailText item={item} /></span>
       </li>
     ))}
   </ul>
@@ -65,21 +79,7 @@ const ProjectDetailsSection = ({ project, onClose }) => {
               {project.name}
             </h2>
             <p className="mt-2 text-sm font-semibold text-zinc-500">{project.type}</p>
-            <p className="section-copy">{project.description}</p>
           </div>
-
-          {project.stack?.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-2" aria-label="Technology stack">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="project-stack-badge rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <article className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -90,7 +90,7 @@ const ProjectDetailsSection = ({ project, onClose }) => {
                 <h3 className="font-display text-xl font-bold text-zinc-950">Key features</h3>
               </div>
               {project.features?.length ? (
-                <DetailList items={project.features} icon={Check} />
+                <DetailList items={project.features} />
               ) : (
                 <p className="mt-5 text-sm leading-6 text-zinc-500">Project features will be added soon.</p>
               )}
@@ -104,23 +104,13 @@ const ProjectDetailsSection = ({ project, onClose }) => {
                 <h3 className="font-display text-xl font-bold text-zinc-950">Challenges</h3>
               </div>
               {project.challenges?.length ? (
-                <DetailList items={project.challenges} icon={Lightbulb} />
+                <DetailList items={project.challenges} />
               ) : (
                 <p className="mt-5 text-sm leading-6 text-zinc-500">Project challenges will be added soon.</p>
               )}
             </article>
           </div>
 
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="focus-ring mt-7 inline-flex items-center gap-2 rounded-full border border-zinc-400 px-5 py-3 text-sm font-bold text-zinc-800"
-            >
-              Visit live project <ExternalLink size={16} />
-            </a>
-          )}
         </div>
       </section>
     </div>
